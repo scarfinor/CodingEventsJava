@@ -7,13 +7,22 @@
 
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th>Name</th>
-        </tr>
-    </thead>
-    <tr th:each="event : ${events}">
-        <td th:text="${event}"></td>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Address</th>
     </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="event : ${events}">
+        <tr>
+            <td th:text="${event.name}"></td>
+            <td th:text="${event.description}"></td>
+            <td th:replace="fragments :: address"></td>
+            <td><img th:src="${event.imageUrl}" alt="Event Image" width="100"></td>
+        </tr>
+    </th:block>
+    </tbody>
 </table>
 
 </body>
