@@ -6,15 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Chris Bay
  */
 @Controller
 @RequestMapping("events")
 public class EventController {
+
+    private int eventId;
 
     @GetMapping
     public String displayAllEvents(Model model) {
@@ -52,5 +51,23 @@ public class EventController {
         return "redirect:/events";
 
     }
+
+    @GetMapping("edit/{eventId}")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+        Event eventToEdit = EventData.getById(eventId);
+        model.addAttribute("event", eventToEdit);
+        String title = "Edit event " + eventToEdit.getName() + " (id=" +eventToEdit.getId() + ")";
+        model.addAttribute("title", title);
+        return "events/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditForm(int eventId, String name, String description) {
+        Event eventToUpdate = EventData.getById(eventId);
+        eventToUpdate.setName(name);
+        eventToUpdate.setDescription(description);
+        return "redirect:/events";
+    }
+
 
 }
