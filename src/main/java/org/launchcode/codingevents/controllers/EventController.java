@@ -16,6 +16,7 @@ import org.springframework.validation.Errors;
 @Controller
 @RequestMapping("events")
 public class EventController {
+
     @Autowired
     private EventRepository eventRepository;
 
