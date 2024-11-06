@@ -7,9 +7,10 @@ import org.launchcode.codingevents.models.Tag;
 public class EventTagDTO {
 
 
+    @NotNull
     private Event events;
 
-
+    @NotNull
     private Tag tag;
 
     public EventTagDTO() {}
